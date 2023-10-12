@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vrfmovep0eh7"]
 
-[ext_resource type="Script" path="res://Duster.gd" id="1_6ylfx"]
+[ext_resource type="Script" path="res://Components/Duster.gd" id="1_6ylfx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hidwb"]
 size = Vector2(12, 4)

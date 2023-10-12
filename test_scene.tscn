@@ -2,14 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://dct1ngwo8cj1j" path="res://Components/room_map.tscn" id="1_0ri66"]
 [ext_resource type="Script" path="res://Components/building.gd" id="3_d38jk"]
-[ext_resource type="PackedScene" uid="uid://vrfmovep0eh7" path="res://duster.tscn" id="3_pli06"]
+[ext_resource type="PackedScene" uid="uid://vrfmovep0eh7" path="res://Components/duster.tscn" id="3_pli06"]
 
 [node name="test_scene" type="Node2D"]
 position = Vector2(135, 154)
 
 [node name="Building" type="Node2D" parent="."]
 script = ExtResource("3_d38jk")
-initial_dust_rate = 5
 
 [node name="RoomMap" parent="Building" instance=ExtResource("1_0ri66")]
 layer_0/tile_data = PackedInt32Array(65535, 0, 0, -2, 0, 0, -65537, 0, 0, -131073, 0, 0, -131072, 0, 0, -196608, 0, 0, -65536, 0, 0, 0, 0, 0, -1, 0, 0, 131071, 0, 0, -131071, 0, 0, -262144, 0, 0, -65538, 0, 0, -131074, 0, 0, -196609, 0, 0, -262145, 0, 0, -65535, 0, 0, 1, 0, 0, 65536, 0, 0, 131072, 0, 0, 262143, 0, 0, 196607, 0, 0, 131070, 0, 0, 65534, 0, 0, -3, 0, 0, -262143, 0, 0, -327679, 0, 0, -393214, 0, 0, -458750, 0, 0, -393213, 0, 0, -524286, 0, 0, -589823, 0, 0, -589822, 0, 0, -655358, 0, 0, -720894, 0, 0, -655357, 0, 0, -524285, 0, 0, -589821, 0, 0, -458749, 0, 0, -524284, 0, 0, -786430, 0, 0, -720895, 0, 0, -655359, 0, 0, -393212, 0, 0, -327676, 0, 0, -262139, 0, 0, -196604, 0, 0, -327675, 0, 0, -131067, 0, 0, -196603, 0, 0, -262138, 0, 0, -131066, 0, 0, -65531, 0, 0, -196602, 0, 0, 5, 0, 0, 65540, 0, 0, -65532, 0, 0, -131068, 0, 0, 4, 0, 0, 65539, 0, 0, -65533, 0, 0, 131076, 0, 0, 3, 0, 0)

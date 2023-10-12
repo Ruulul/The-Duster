@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://b13cyhljcqwd5"]
+
+[ext_resource type="Script" path="res://Components/building_generator.gd" id="1_5mw7e"]
+[ext_resource type="PackedScene" uid="uid://vrfmovep0eh7" path="res://Components/duster.tscn" id="2_q2qfh"]
+[ext_resource type="PackedScene" uid="uid://idh322qav0lo" path="res://Components/building.tscn" id="3_hr354"]
+
+[node name="BuildingGenerator" type="Node2D"]
+position = Vector2(200, 0)
+script = ExtResource("1_5mw7e")
+Duster = ExtResource("2_q2qfh")
+
+[node name="Building" parent="." instance=ExtResource("3_hr354")]

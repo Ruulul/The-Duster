@@ -7,18 +7,16 @@ enum Type {
 }
 
 ## How many specks of dirt will be generated per second
-@export var initial_dust_rate: int
+@export var initial_dust_rate: int = 5
 ## How long in seconds it takes for the dirt rate decays
-@export var dust_decay: int = 10
+@export var dust_decay: int = 20
 ## By how much does the dirt rate decays (decay/rate dirt/second)
-@export var dust_decay_rate: float = 1.0
-## How many rooms there are in the building (not used right now)
-@export var rooms_count: int
-## Type of the building
+@export var dust_decay_rate: float = 0.5
+## Type of the building	
 @export var type: Type
 
-@onready var dust_rate = initial_dust_rate
-@onready var _decay = 0.0
+var dust_rate
+var _decay
 # Atlas positions of the 4 dirt levels
 const dirt_levels = [Vector2i(2, 2), Vector2i(4, 2), Vector2i(2, 3), Vector2i(4, 3)]
 const dirt_multiplier = 20
@@ -30,14 +28,22 @@ enum RoomMapLayers {
 }
 
 func _ready():
-	for i in range(dirt_multiplier * dust_rate):
-		dirt_loop()
-	decay()
-	dirt_loop()
+	await get_parent().ready
+	refresh()
 
 func decay():
 	_decay += dust_decay_rate
 	get_tree().create_timer(dust_decay).timeout.connect(decay)
+
+func refresh():
+	_decay = 0.0
+	dust_rate = initial_dust_rate
+	for i in range(dirt_multiplier * dust_rate):
+		dirt_loop()
+	decay()
+	dirt_loop()
+	
+
 func dirt_loop():
 	var ground: Array[Vector2i] = $RoomMap.get_used_cells(RoomMapLayers.Ground)
 	var chosen_cell = ground.pick_random()
