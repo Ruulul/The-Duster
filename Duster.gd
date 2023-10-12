@@ -38,10 +38,7 @@ func clear_dust() -> void:
 			for coords in neighboors_tiles:
 				map.set_cell(Building.RoomMapLayers.Dirt, coords, 0, get_new_dirt_atlas_coords(coords))
 			
-			if neighboors_tiles.all(is_coord_clear):
-				state = states.wait
-			else:
-				state = states.clear_dust
+			state = states.clear_dust if not neighboors_tiles.all(is_coord_clear) else states.wait
 	)
 
 func move() -> void:
