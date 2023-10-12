@@ -6,10 +6,15 @@ enum Type {
 	House
 }
 
+## How many specks of dirt will be generated per second
 @export var initial_dust_rate: int
+## How long in seconds it takes for the dirt rate decays
 @export var dust_decay: int = 10
+## By how much does the dirt rate decays (decay/rate dirt/second)
 @export var dust_decay_rate: float = 1.0
+## How many rooms there are in the building (not used right now)
 @export var rooms_count: int
+## Type of the building
 @export var type: Type
 
 @onready var dust_rate = initial_dust_rate
