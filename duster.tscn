@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://vrfmovep0eh7"]
+
+[ext_resource type="Script" path="res://Duster.gd" id="1_6ylfx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hidwb"]
+size = Vector2(12, 4)
+
+[node name="Duster" type="CharacterBody2D" node_paths=PackedStringArray("map")]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_6ylfx")
+speed = 2.0
+map = NodePath("")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -28.0
+offset_right = 8.0
+offset_bottom = 4.0
+color = Color(0.0823529, 0.113725, 0.580392, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hidwb")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
+path_max_distance = 20.0
