@@ -8,7 +8,7 @@ Make friends and enemies.
 		- [ ] Buildings are in a zone
 		- [ ] Zones define rate of dust
 		- [ ] Buy equipment to clear better
-		- [ ]Equipment can auto clean, or help you clear
+		- [ ] Equipment can auto clean, or help you clear
 	- Desired:
 		- [ ] Have multiple cities where you can move
 		- [ ] Have your own house that has to be kept tidy
