@@ -54,12 +54,18 @@ func clear_dust() -> void:
 	state = states.cleaning_dust
 
 	get_tree().create_timer(0.5).timeout.connect(func ():
+			var collected_dust = 0
 			var current_tile_coords = map.local_to_map(map.to_local(global_position))
 			var neighboors_tiles = map.get_surrounding_cells(current_tile_coords)
 			neighboors_tiles.append(current_tile_coords)
 
 			for coords in neighboors_tiles:
-				map.set_cell(Building.RoomMapLayers.Dirt, coords, 0, get_new_dirt_atlas_coords(coords))
+				var new_atlas_coords = get_new_dirt_atlas_coords(coords)
+				if map.get_cell_atlas_coords(Building.RoomMapLayers.Dirt, coords) != new_atlas_coords:
+					collected_dust += 1
+				map.set_cell(Building.RoomMapLayers.Dirt, coords, 0, new_atlas_coords)
+			
+			Dust.add(collected_dust)
 			
 			state = states.clear_dust if not neighboors_tiles.all(is_coord_clear) else states.wait
 	)

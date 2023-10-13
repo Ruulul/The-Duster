@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://idh322qav0lo" path="res://Components/building.tscn" id="3_hr354"]
 
 [node name="BuildingGenerator" type="Node2D"]
-position = Vector2(200, 0)
+position = Vector2(200, 10)
 script = ExtResource("1_5mw7e")
 rooms_count = 4
 Duster = ExtResource("2_q2qfh")

@@ -1,15 +1,16 @@
 extends Node2D
+class_name BuildingGenerator
 
 @export var rooms_count = 3
 @export var Duster: PackedScene
 
 
-const tile_size = 16
 const max_depth = 10
-const image_width = 12
-const image_height = 12
-const size = image_width * image_height
-const to_isometric = Transform2D(Vector2(1, 0.5), Vector2(-1, 0.5), Vector2(0, 0))
+static var tile_size = 16
+static var image_width = 12
+static var image_height = 12
+static var size = image_width * image_height
+static var to_isometric = Transform2D(Vector2(1, 0.5), Vector2(-1, 0.5), Vector2(0, 0))
 
 @onready var map = $Building/RoomMap as TileMap
 @onready var rooms: Array[Rect2i] = []
