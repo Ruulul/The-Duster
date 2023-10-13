@@ -5,8 +5,9 @@ extends Node2D
 
 
 const tile_size = 16
-const image_width = 15
-const image_height = image_width
+const max_depth = 10
+const image_width = 12
+const image_height = 12
 const size = image_width * image_height
 const to_isometric = Transform2D(Vector2(1, 0.5), Vector2(-1, 0.5), Vector2(0, 0))
 
@@ -32,8 +33,8 @@ func generate():
 	var generated_map = Image.create_from_data(image_width, image_height, false, Image.FORMAT_L8, pixels)
 
 	while rooms.size() < rooms_count:
-		var width = randi_range(3, 5)
-		var height = randi_range(3, 5)
+		var width = randi_range(2, 4)
+		var height = randi_range(2, 4)
 		var coords = find_coords_for(generated_map, width, height)
 		if (!coords):
 			rooms.pop_back()
@@ -65,7 +66,7 @@ func generate():
 	for pixel in generated_map.get_data():
 		var x = i % image_width
 		var y = i / image_height
-		var ground = Vector2(0, 0) if pixel == 255 else Vector2(-1, -1) #Vector2(0, 2)
+		var ground = Vector2(0, 0) if pixel == 255 else Vector2(0, 2)
 		map.set_cell(
 				Building.RoomMapLayers.Ground,
 				map.local_to_map(to_isometric * Vector2(x, y) * tile_size),
@@ -83,7 +84,6 @@ func generate():
 
 func find_coords_for(image: Image, width: int, height: int):
 	var found = false
-	const max_depth = 10
 	var count = 0
 	var found_coords = Vector2i(1, 1)
 	while not found and count < max_depth:

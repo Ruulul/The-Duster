@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var map: TileMap
 
 @onready var navigation_agent = $NavigationAgent2D
+@onready var targets_list: PackedVector2Array = []
 
 var states: Dictionary = {
 	move = move,
@@ -17,13 +18,22 @@ var states: Dictionary = {
 func set_target(target: Vector2) -> void:
 	navigation_agent.target_position = target
 
+func _input(event):
+	if event.is_action_pressed("select"):
+		var mouse_position = get_viewport().get_mouse_position()
+		var mouse_position_on_map = map.local_to_map(map.to_local(mouse_position))
+		var map_rect = map.get_used_rect()
+		if map_rect.has_point(mouse_position_on_map):
+			targets_list.append(mouse_position)
+
 func _physics_process(delta):
 	state.call()
 
 func wait() -> void:
 	$ColorRect.color = Color.PURPLE
-	if Input.is_action_just_pressed("select"):
-		set_target(get_viewport().get_mouse_position())
+	if not targets_list.is_empty():
+		set_target(targets_list[0])
+		targets_list.remove_at(0)
 		state = states.move
 
 func clear_dust() -> void:

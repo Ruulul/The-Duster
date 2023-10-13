@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dct1ngwo8cj1j"]
+[gd_scene load_steps=8 format=3 uid="uid://dct1ngwo8cj1j"]
 
 [ext_resource type="Texture2D" uid="uid://dcxk6ebq1q7y3" path="res://ASSets/atlas.png" id="1_ll3yv"]
 
@@ -12,11 +12,6 @@ tile_data = PackedInt32Array(131073, 0, 0, 196608, 0, 0, 262145, 0, 0, 2, 0, 0, 
 tile_data = PackedInt32Array(131072, 0, 0, 1, 0, 0, 65536, 0, 0, 131073, 0, 0, 196608, 0, 0, 262145, 0, 0, 65537, 0, 0, 131074, 0, 0, 196609, 0, 0, 262146, 0, 0, 327681, 0, 0, 393218, 0, 0, 196610, 0, 0, 262147, 0, 0, 327682, 0, 0)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7c55c"]
-vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)])
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_2qlb2"]
 vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)])
@@ -49,7 +44,6 @@ texture = ExtResource("1_ll3yv")
 0:2/0/texture_origin = Vector2i(0, -8)
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
-0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2qlb2")
 0:2/1 = 1
 0:2/1/texture_origin = Vector2i(0, 8)
 0:2/1/physics_layer_0/linear_velocity = Vector2(0, 0)
