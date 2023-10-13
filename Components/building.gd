@@ -15,6 +15,9 @@ enum Type {
 ## Type of the building	
 @export var type: Type
 
+
+@onready var map = $RoomMap as TileMap
+
 var dust_rate
 var _decay
 # Atlas positions of the 4 dirt levels
@@ -45,9 +48,13 @@ func refresh():
 	
 
 func dirt_loop():
-	var ground: Array[Vector2i] = $RoomMap.get_used_cells(RoomMapLayers.Ground)
+	var ground: Array[Vector2i] = map.get_used_cells(RoomMapLayers.Ground)
+	ground = ground.filter(
+		func (point):
+			return map.get_cell_tile_data(RoomMapLayers.Ground, point).get_custom_data('dirtness') > 0
+	)
 	var chosen_cell = ground.pick_random()
-	var previous_dirt = $RoomMap.get_cell_atlas_coords(RoomMapLayers.Dirt, chosen_cell)
+	var previous_dirt = map.get_cell_atlas_coords(RoomMapLayers.Dirt, chosen_cell)
 	# the find returns -1 if it is not there, thus with the +1 it puts the dirt at the first stage
 	var next_dirt = dirt_levels[
 			min(
@@ -55,6 +62,6 @@ func dirt_loop():
 					dirt_levels.size() - 1
 				)
 		]
-	$RoomMap.set_cell(RoomMapLayers.Dirt, chosen_cell, 0, next_dirt)
+	map.set_cell(RoomMapLayers.Dirt, chosen_cell, 0, next_dirt)
 	if _decay > 0:
-		get_tree().create_timer(_decay/dust_rate).timeout.connect(dirt_loop)
+		get_tree().create_timer(1.0/(dust_rate * get_parent().rooms_count)).timeout.connect(dirt_loop)

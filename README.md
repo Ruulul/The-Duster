@@ -30,6 +30,7 @@ Make friends and enemies.
 	- [ ] Payment
 - [ ] Character:
 	- [ ] Energy
+	- [ ] Vaccuum Capacity
 	- [ ] Dust
 	- [ ] Equipment
 		- [ ] Manual
@@ -41,5 +42,6 @@ Make friends and enemies.
 ## Roadmap
 - [x] Character navigation in building
 - [x] Building generation
-- [ ] Make the levels be fast and satisfactory
+- [x] Make the levels be fast and satisfactory
+- [ ] Insert Dust economy and character's manual stats
 - [ ] Animations
