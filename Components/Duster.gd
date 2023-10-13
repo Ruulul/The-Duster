@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed = 1.0
 @export var map: TileMap
 
-@onready var navigation_agent = $NavigationAgent2D
+@onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
 @onready var targets_list: PackedVector2Array = []
 
 var states: Dictionary = {
@@ -15,7 +15,8 @@ var states: Dictionary = {
 @onready var state: Callable = states.wait
 
 func _draw():
-	draw_circle(to_local(navigation_agent.target_position), 5.0, Color.DARK_BLUE)
+	if not navigation_agent.is_navigation_finished():
+		draw_circle(to_local(navigation_agent.target_position), 5.0, Color.DARK_BLUE)
 	for target in targets_list:
 		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.BROWN)
 
