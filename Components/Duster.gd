@@ -14,26 +14,38 @@ var states: Dictionary = {
 }
 @onready var state: Callable = states.wait
 
+func _draw():
+	draw_circle(to_local(navigation_agent.target_position), 5.0, Color.DARK_BLUE)
+	for target in targets_list:
+		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.BROWN)
+
 
 func set_target(target: Vector2) -> void:
 	navigation_agent.target_position = target
 
 func _input(event):
 	if event.is_action_pressed("select"):
-		var mouse_position = get_viewport().get_mouse_position()
-		var mouse_position_on_map = map.local_to_map(map.to_local(mouse_position))
+		var mouse_position = map.local_to_map(map.to_local(get_viewport().get_mouse_position()))
 		var map_rect = map.get_used_rect()
-		if map_rect.has_point(mouse_position_on_map):
-			targets_list.append(mouse_position)
+		if map_rect.has_point(mouse_position):
+			if targets_list.has(mouse_position):
+				targets_list.remove_at(targets_list.find(mouse_position))
+			else:
+				targets_list.append(mouse_position)
 
 func _physics_process(delta):
 	state.call()
+	queue_redraw()
 
 func wait() -> void:
 	$ColorRect.color = Color.PURPLE
 	if not targets_list.is_empty():
-		set_target(targets_list[0])
-		targets_list.remove_at(0)
+		var points = Array(targets_list).map(func (point): return map.to_global(map.map_to_local(point))) \
+				.map(func (coord): return global_position.distance_to(coord))
+		var closest_point = points.min()
+		var closest_index = points.find(closest_point)
+		set_target(map.to_global(map.map_to_local(targets_list[closest_index])))
+		targets_list.remove_at(closest_index)
 		state = states.move
 
 func clear_dust() -> void:
