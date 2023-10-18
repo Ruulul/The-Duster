@@ -45,4 +45,7 @@ Make friends and enemies.
 - [x] Make the levels be fast and satisfactory
 - [x] Change Duster logic for cleaning so it is possible resize the action area
 - [ ] Insert Dust economy and character's manual stats
-- [ ] Animations
+- [/] Animations
+	- [x] Idle
+	- [x] Walk
+	- [ ] Cleaning

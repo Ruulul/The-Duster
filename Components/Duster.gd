@@ -8,7 +8,6 @@ extends CharacterBody2D
 
 @onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
 @onready var targets_list: PackedVector2Array = []
-@onready var cleaning_tiles: PackedVector2Array = []
 
 var states: Dictionary = {
 	move = move,
@@ -23,8 +22,6 @@ func _draw():
 		draw_circle(to_local(navigation_agent.target_position), 5.0, Color.DARK_BLUE)
 	for target in targets_list:
 		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.BROWN)
-	for target in cleaning_tiles:
-		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.GREEN)
 
 
 func set_target(target: Vector2) -> void:
@@ -56,21 +53,22 @@ func _input(event):
 
 func _physics_process(delta):
 	state.call()
+	if state in [states.move]:
+		$AnimatedSprite2D.play("run")
+		$AnimatedSprite2D.flip_h = position.direction_to(navigation_agent.target_position).x < 0
+	else:
+		$AnimatedSprite2D.play("idle")
 	queue_redraw()
 
 func wait() -> void:
-	$ColorRect.color = Color.PURPLE
 	if not targets_list.is_empty():
 		set_next_target()
 		state = states.move
 
 func clear_dust() -> void:
-	$ColorRect.color = Color.DARK_KHAKI
 	state = states.cleaning_dust
-	cleaning_tiles.append_array(get_target_tiles())
 
 	get_tree().create_timer(0.5).timeout.connect(func ():
-			cleaning_tiles.clear()
 			var collected_dust = 0
 			var target_tiles = get_target_tiles()
 
@@ -89,7 +87,6 @@ func move() -> void:
 	if navigation_agent.is_navigation_finished():
 		state = states.clear_dust
 		return
-	$ColorRect.color = Color.DARK_BLUE
 	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed * 32.0
 	move_and_slide()
 	

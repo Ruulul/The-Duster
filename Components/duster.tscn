@@ -1,23 +1,85 @@
-[gd_scene load_steps=3 format=3 uid="uid://vrfmovep0eh7"]
+[gd_scene load_steps=13 format=3 uid="uid://vrfmovep0eh7"]
 
 [ext_resource type="Script" path="res://Components/Duster.gd" id="1_6ylfx"]
+[ext_resource type="Texture2D" uid="uid://bnl0i645obv3g" path="res://ASSets/human.png" id="2_w4tfo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hidwb"]
 size = Vector2(12, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hixph"]
+atlas = ExtResource("2_w4tfo")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88eli"]
+atlas = ExtResource("2_w4tfo")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6frc"]
+atlas = ExtResource("2_w4tfo")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8da8"]
+atlas = ExtResource("2_w4tfo")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki48q"]
+atlas = ExtResource("2_w4tfo")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kir8i"]
+atlas = ExtResource("2_w4tfo")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2odg"]
+atlas = ExtResource("2_w4tfo")
+region = Rect2(128, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in5nx"]
+atlas = ExtResource("2_w4tfo")
+region = Rect2(144, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oy1lm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hixph")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_88eli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6frc")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_k8da8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki48q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kir8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2odg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in5nx")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [node name="Duster" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_6ylfx")
 speed = 2.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-y_sort_enabled = true
-offset_left = -8.0
-offset_top = -28.0
-offset_right = 8.0
-offset_bottom = 4.0
-color = Color(0.0823529, 0.113725, 0.580392, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hidwb")
@@ -29,3 +91,8 @@ path_max_distance = 20.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_oy1lm")
+animation = &"run"

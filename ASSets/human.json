@@ -1,0 +1,103 @@
+{ "frames": {
+   "human 0.ase": {
+	"frame": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 250
+   },
+   "human 1.ase": {
+	"frame": { "x": 16, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 50
+   },
+   "human 2.ase": {
+	"frame": { "x": 32, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 250
+   },
+   "human 3.ase": {
+	"frame": { "x": 48, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 50
+   },
+   "human 4.ase": {
+	"frame": { "x": 64, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 50
+   },
+   "human 5.ase": {
+	"frame": { "x": 80, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 50
+   },
+   "human 6.ase": {
+	"frame": { "x": 96, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 100
+   },
+   "human 7.ase": {
+	"frame": { "x": 112, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 100
+   },
+   "human 8.ase": {
+	"frame": { "x": 128, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 100
+   },
+   "human 9.ase": {
+	"frame": { "x": 144, "y": 0, "w": 16, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 32 },
+	"sourceSize": { "w": 16, "h": 32 },
+	"duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.2-973d0e3d-SDL",
+  "image": "C:\\Users\\sanka\\Documents\\godot projects\\The Duster\\ASSets\\human.png",
+  "format": "RGBA8888",
+  "size": { "w": 160, "h": 32 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Idle", "from": 0, "to": 3, "direction": "forward" },
+   { "name": "R_Idle", "from": 4, "to": 5, "direction": "forward" },
+   { "name": "R_Run", "from": 6, "to": 9, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Background", "opacity": 255, "blendMode": "normal" },
+   { "name": "Legs", "opacity": 255, "blendMode": "normal" },
+   { "name": "Body+Legs", "opacity": 255, "blendMode": "normal" },
+   { "name": "Arms", "opacity": 255, "blendMode": "normal" },
+   { "name": "Clothes", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

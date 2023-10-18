@@ -1,9 +1,24 @@
-[preset]
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bnl0i645obv3g"
+path="res://.godot/imported/human.png-a843efb8d34fe0a8fca09ab7e5e5aa79.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://ASSets/human.png"
+dest_files=["res://.godot/imported/human.png-a843efb8d34fe0a8fca09ab7e5e5aa79.ctex"]
+
+[params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

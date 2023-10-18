@@ -73,7 +73,7 @@ func generate():
 		var x = i % image_width
 		var y = i / image_height
 		var is_ground =  pixel == 255
-		var ground = Vector2(0, 0) if is_ground else Vector2(0, 2)
+		var ground = Vector2(0, 0) if is_ground else Vector2(-1, -1) #Vector2(0, 2)
 		map.set_cell(
 				Building.RoomMapLayers.Ground,
 				map.local_to_map(RoomMap.to_isometric * Vector2(x, y) * RoomMap.tile_size),
