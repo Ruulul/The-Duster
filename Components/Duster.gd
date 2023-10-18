@@ -55,7 +55,7 @@ func _physics_process(delta):
 	state.call()
 	if state in [states.move]:
 		$AnimatedSprite2D.play("run")
-		$AnimatedSprite2D.flip_h = position.direction_to(navigation_agent.target_position).x < 0
+		$AnimatedSprite2D.flip_h = position.direction_to(navigation_agent.get_next_path_position()).x < 0
 	else:
 		$AnimatedSprite2D.play("idle")
 	queue_redraw()
