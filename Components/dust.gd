@@ -4,6 +4,9 @@ signal update(new_dust: int)
 
 var dust: int = 0
 var max_dust: int = 100
+
+const dirt = Vector2i(2, 2)
+const dirt_levels = [3, 2, 1, 0]
 @onready var label = $CanvasLayer/VBoxContainer/Label
 
 func _ready():

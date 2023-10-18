@@ -73,7 +73,7 @@ func clear_dust() -> void:
 				var new_dirt_tile = get_new_dirt_tile(coords)
 				if map.get_cell_alternative_tile(Building.RoomMapLayers.Dirt, coords) != new_dirt_tile:
 					collected_dust += 1
-				map.set_cell(Building.RoomMapLayers.Dirt, coords, 0, Building.dirt, new_dirt_tile)
+				map.set_cell(Building.RoomMapLayers.Dirt, coords, 0, Dust.dirt, new_dirt_tile)
 			
 			Dust.add(collected_dust)
 			
@@ -107,10 +107,10 @@ func get_target_tiles():
 
 func get_new_dirt_tile(coords):
 	var current_dirt = map.get_cell_alternative_tile(Building.RoomMapLayers.Dirt, coords)
-	var previous_dirt_index = Building.dirt_levels.find(current_dirt) - 1
+	var previous_dirt_index = Dust.dirt_levels.find(current_dirt) - 1
 	var previous_dirt = -1
 	if previous_dirt_index >= 0:
-		previous_dirt = Building.dirt_levels[previous_dirt_index]
+		previous_dirt = Dust.dirt_levels[previous_dirt_index]
 	return previous_dirt
 
 func is_coord_clear(coords):
