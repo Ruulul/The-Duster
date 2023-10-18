@@ -12,6 +12,7 @@ script = ExtResource("1_6ylfx")
 speed = 2.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
+y_sort_enabled = true
 offset_left = -8.0
 offset_top = -28.0
 offset_right = 8.0
@@ -23,7 +24,7 @@ shape = SubResource("RectangleShape2D_hidwb")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
-target_desired_distance = 0.1
+target_desired_distance = 4.0
 path_max_distance = 20.0
 
 [node name="Camera2D" type="Camera2D" parent="."]

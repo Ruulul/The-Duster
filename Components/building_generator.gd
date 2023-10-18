@@ -72,13 +72,26 @@ func generate():
 	for pixel in generated_map.get_data():
 		var x = i % image_width
 		var y = i / image_height
-		var ground = Vector2(0, 0) if pixel == 255 else Vector2(-1, -1) #Vector2(0, 2)
+		var is_ground =  pixel == 255
+		var ground = Vector2(0, 0) if is_ground else Vector2(0, 2)
 		map.set_cell(
 				Building.RoomMapLayers.Ground,
 				map.local_to_map(RoomMap.to_isometric * Vector2(x, y) * RoomMap.tile_size),
 				0,
 				ground
 		)
+		for offset in [
+			Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1),
+			Vector2(0, 1), Vector2(1, 0), Vector2(1, 1)
+		]:
+			var point = Vector2(x, y) + offset
+			if is_ground and generated_map.get_pixelv(point) == Color.BLACK:
+				map.set_cell(
+						Building.RoomMapLayers.Walls,
+						map.local_to_map(RoomMap.to_isometric * point * RoomMap.tile_size),
+						0,
+						Vector2i(2, 0)
+				)
 		i += 1
 	
 	if (duster):

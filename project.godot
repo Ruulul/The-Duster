@@ -28,10 +28,6 @@ window/size/window_height_override=900
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
-
 [input]
 
 select={

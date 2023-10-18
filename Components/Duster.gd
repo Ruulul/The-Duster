@@ -29,6 +29,14 @@ func _draw():
 
 func set_target(target: Vector2) -> void:
 	navigation_agent.target_position = target
+func set_next_target():
+	var points = Array(targets_list).map(func (point): return map.to_global(map.map_to_local(point))) \
+				.map(func (coord): return global_position.distance_to(coord))
+	var closest_point = points.min()
+	var closest_index = points.find(closest_point)
+	if closest_index >= 0:
+		set_target(map.to_global(map.map_to_local(targets_list[closest_index])))
+	targets_list.remove_at(closest_index)
 
 func _input(event):
 	if event.is_action_pressed("select"):
@@ -41,6 +49,8 @@ func _input(event):
 		if map_rect.has_point(mouse_position):
 			if targets_list.has(mouse_position):
 				targets_list.remove_at(targets_list.find(mouse_position))
+				if navigation_agent.target_position == map.to_global(map.map_to_local(mouse_position)):
+					set_next_target()
 			else:
 				targets_list.append(mouse_position)
 
@@ -51,12 +61,7 @@ func _physics_process(delta):
 func wait() -> void:
 	$ColorRect.color = Color.PURPLE
 	if not targets_list.is_empty():
-		var points = Array(targets_list).map(func (point): return map.to_global(map.map_to_local(point))) \
-				.map(func (coord): return global_position.distance_to(coord))
-		var closest_point = points.min()
-		var closest_index = points.find(closest_point)
-		set_target(map.to_global(map.map_to_local(targets_list[closest_index])))
-		targets_list.remove_at(closest_index)
+		set_next_target()
 		state = states.move
 
 func clear_dust() -> void:
