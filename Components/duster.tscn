@@ -23,5 +23,8 @@ shape = SubResource("RectangleShape2D_hidwb")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
-target_desired_distance = 4.0
+target_desired_distance = 0.1
 path_max_distance = 20.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true

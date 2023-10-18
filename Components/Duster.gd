@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
-@export var speed = 1.0
 @export var map: TileMap
+
+@export_group("stats")
+@export var cleaning_radius: int = 1
+@export var speed = 1.0
 
 @onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
 @onready var targets_list: PackedVector2Array = []
+@onready var cleaning_tiles: PackedVector2Array = []
 
 var states: Dictionary = {
 	move = move,
@@ -19,6 +23,8 @@ func _draw():
 		draw_circle(to_local(navigation_agent.target_position), 5.0, Color.DARK_BLUE)
 	for target in targets_list:
 		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.BROWN)
+	for target in cleaning_tiles:
+		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.GREEN)
 
 
 func set_target(target: Vector2) -> void:
@@ -26,7 +32,11 @@ func set_target(target: Vector2) -> void:
 
 func _input(event):
 	if event.is_action_pressed("select"):
-		var mouse_position = map.local_to_map(map.to_local(get_viewport().get_mouse_position()))
+		var mouse_position = map.local_to_map(
+			map.to_local(
+				$Camera2D.get_global_mouse_position()
+			)
+		)
 		var map_rect = map.get_used_rect()
 		if map_rect.has_point(mouse_position):
 			if targets_list.has(mouse_position):
@@ -52,14 +62,14 @@ func wait() -> void:
 func clear_dust() -> void:
 	$ColorRect.color = Color.DARK_KHAKI
 	state = states.cleaning_dust
+	cleaning_tiles.append_array(get_target_tiles())
 
 	get_tree().create_timer(0.5).timeout.connect(func ():
+			cleaning_tiles.clear()
 			var collected_dust = 0
-			var current_tile_coords = map.local_to_map(map.to_local(global_position))
-			var neighboors_tiles = map.get_surrounding_cells(current_tile_coords)
-			neighboors_tiles.append(current_tile_coords)
+			var target_tiles = get_target_tiles()
 
-			for coords in neighboors_tiles:
+			for coords in target_tiles:
 				var new_dirt_tile = get_new_dirt_tile(coords)
 				if map.get_cell_alternative_tile(Building.RoomMapLayers.Dirt, coords) != new_dirt_tile:
 					collected_dust += 1
@@ -67,7 +77,7 @@ func clear_dust() -> void:
 			
 			Dust.add(collected_dust)
 			
-			state = states.clear_dust if not neighboors_tiles.all(is_coord_clear) else states.wait
+			state = states.clear_dust if not target_tiles.all(is_coord_clear) else states.wait
 	)
 
 func move() -> void:
@@ -77,6 +87,23 @@ func move() -> void:
 	$ColorRect.color = Color.DARK_BLUE
 	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed * 32.0
 	move_and_slide()
+	
+func get_target_tiles():
+	var square_side = 1 + 2 * cleaning_radius
+	var origin_tile_position = map.local_to_map(map.to_local(global_position))
+	
+	var results = []
+	for x in range(square_side):
+		for y in range(square_side):
+			results.append(
+				origin_tile_position
+				+ map.local_to_map(
+					(BuildingGenerator.to_isometric
+					* (Vector2(x, y) + Vector2(1 - cleaning_radius, -cleaning_radius))
+					* BuildingGenerator.tile_size)
+				)
+			)
+	return results
 
 func get_new_dirt_tile(coords):
 	var current_dirt = map.get_cell_alternative_tile(Building.RoomMapLayers.Dirt, coords)
