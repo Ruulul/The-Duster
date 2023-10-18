@@ -3,13 +3,20 @@ class_name BuildingGenerator
 
 @export var rooms_count = 3
 @export var Duster: PackedScene
+@export var image_width = 12
+@export var image_height = 12
+@export var min_length = 2
+@export var max_length = 6
+var random_len = 0: get = _get_random_size
+var size = 0 : get = _get_size
 
+func _get_size():
+	return image_width * image_height
+func _get_random_size():
+	return randi_range(min_length, max_length)
 
 const max_depth = 10
 static var tile_size = 16
-static var image_width = 12
-static var image_height = 12
-static var size = image_width * image_height
 static var to_isometric = Transform2D(Vector2(1, 0.5), Vector2(-1, 0.5), Vector2(0, 0))
 
 @onready var map = $Building/RoomMap as TileMap
@@ -34,11 +41,11 @@ func generate():
 	var generated_map = Image.create_from_data(image_width, image_height, false, Image.FORMAT_L8, pixels)
 
 	while rooms.size() < rooms_count:
-		var width = randi_range(2, 4)
-		var height = randi_range(2, 4)
+		var width = random_len
+		var height = random_len
 		var coords = find_coords_for(generated_map, width, height)
 		if (!coords):
-			rooms.pop_back()
+			generated_map.fill_rect(rooms.pop_back(), Color.BLACK)
 			continue
 		var room_rect = Rect2i(coords as Vector2i, Vector2i(width, height))
 		rooms.append(room_rect)
@@ -67,7 +74,7 @@ func generate():
 	for pixel in generated_map.get_data():
 		var x = i % image_width
 		var y = i / image_height
-		var ground = Vector2(0, 0) if pixel == 255 else Vector2(0, 2)
+		var ground = Vector2(0, 0) if pixel == 255 else Vector2(-1, -1) #Vector2(0, 2)
 		map.set_cell(
 				Building.RoomMapLayers.Ground,
 				map.local_to_map(to_isometric * Vector2(x, y) * tile_size),

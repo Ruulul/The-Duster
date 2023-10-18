@@ -7,8 +7,10 @@
 [node name="BuildingGenerator" type="Node2D"]
 position = Vector2(200, 10)
 script = ExtResource("1_5mw7e")
-rooms_count = 4
+rooms_count = 6
 Duster = ExtResource("2_q2qfh")
+image_width = 20
+image_height = 20
 
 [node name="Building" parent="." instance=ExtResource("3_hr354")]
 initial_dust_rate = 3

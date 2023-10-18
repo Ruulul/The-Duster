@@ -21,7 +21,8 @@ enum Type {
 var dust_rate
 var _decay
 # Atlas positions of the 4 dirt levels
-const dirt_levels = [Vector2i(2, 2), Vector2i(4, 2), Vector2i(2, 3), Vector2i(4, 3)]
+const dirt = Vector2i(2, 2)
+const dirt_levels = [3, 2, 1, 0]
 const dirt_multiplier = 20
 enum RoomMapLayers {
 	Ground = 0,
@@ -54,7 +55,7 @@ func dirt_loop():
 			return map.get_cell_tile_data(RoomMapLayers.Ground, point).get_custom_data('dirtness') > 0
 	)
 	var chosen_cell = ground.pick_random()
-	var previous_dirt = map.get_cell_atlas_coords(RoomMapLayers.Dirt, chosen_cell)
+	var previous_dirt = map.get_cell_alternative_tile(RoomMapLayers.Dirt, chosen_cell)
 	# the find returns -1 if it is not there, thus with the +1 it puts the dirt at the first stage
 	var next_dirt = dirt_levels[
 			min(
@@ -62,6 +63,6 @@ func dirt_loop():
 					dirt_levels.size() - 1
 				)
 		]
-	map.set_cell(RoomMapLayers.Dirt, chosen_cell, 0, next_dirt)
+	map.set_cell(RoomMapLayers.Dirt, chosen_cell, 0, dirt, next_dirt)
 	if _decay > 0:
 		get_tree().create_timer(1.0/(dust_rate * get_parent().rooms_count)).timeout.connect(dirt_loop)

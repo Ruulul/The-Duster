@@ -43,5 +43,6 @@ Make friends and enemies.
 - [x] Character navigation in building
 - [x] Building generation
 - [x] Make the levels be fast and satisfactory
+- [ ] Change Duster logic for cleaning so it is possible resize the action area
 - [ ] Insert Dust economy and character's manual stats
 - [ ] Animations

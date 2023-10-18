@@ -60,10 +60,10 @@ func clear_dust() -> void:
 			neighboors_tiles.append(current_tile_coords)
 
 			for coords in neighboors_tiles:
-				var new_atlas_coords = get_new_dirt_atlas_coords(coords)
-				if map.get_cell_atlas_coords(Building.RoomMapLayers.Dirt, coords) != new_atlas_coords:
+				var new_dirt_tile = get_new_dirt_tile(coords)
+				if map.get_cell_alternative_tile(Building.RoomMapLayers.Dirt, coords) != new_dirt_tile:
 					collected_dust += 1
-				map.set_cell(Building.RoomMapLayers.Dirt, coords, 0, new_atlas_coords)
+				map.set_cell(Building.RoomMapLayers.Dirt, coords, 0, Building.dirt, new_dirt_tile)
 			
 			Dust.add(collected_dust)
 			
@@ -78,10 +78,10 @@ func move() -> void:
 	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed * 32.0
 	move_and_slide()
 
-func get_new_dirt_atlas_coords(coords):
-	var current_dirt = map.get_cell_atlas_coords(Building.RoomMapLayers.Dirt, coords)
+func get_new_dirt_tile(coords):
+	var current_dirt = map.get_cell_alternative_tile(Building.RoomMapLayers.Dirt, coords)
 	var previous_dirt_index = Building.dirt_levels.find(current_dirt) - 1
-	var previous_dirt = Vector2i(-1, -1)
+	var previous_dirt = -1
 	if previous_dirt_index >= 0:
 		previous_dirt = Building.dirt_levels[previous_dirt_index]
 	return previous_dirt
