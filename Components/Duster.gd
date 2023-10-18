@@ -93,14 +93,14 @@ func get_target_tiles():
 	var origin_tile_position = map.local_to_map(map.to_local(global_position))
 	
 	var results = []
-	for x in range(square_side):
-		for y in range(square_side):
+	for y in range(square_side):
+		for x in range(square_side):
 			results.append(
 				origin_tile_position
 				+ map.local_to_map(
-					(BuildingGenerator.to_isometric
+					RoomMap.to_isometric
 					* (Vector2(x, y) + Vector2(1 - cleaning_radius, -cleaning_radius))
-					* BuildingGenerator.tile_size)
+					* RoomMap.tile_size
 				)
 			)
 	return results

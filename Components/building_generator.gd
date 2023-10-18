@@ -16,8 +16,6 @@ func _get_random_size():
 	return randi_range(min_length, max_length)
 
 const max_depth = 10
-static var tile_size = 16
-static var to_isometric = Transform2D(Vector2(1, 0.5), Vector2(-1, 0.5), Vector2(0, 0))
 
 @onready var map = $Building/RoomMap as TileMap
 @onready var rooms: Array[Rect2i] = []
@@ -77,7 +75,7 @@ func generate():
 		var ground = Vector2(0, 0) if pixel == 255 else Vector2(-1, -1) #Vector2(0, 2)
 		map.set_cell(
 				Building.RoomMapLayers.Ground,
-				map.local_to_map(to_isometric * Vector2(x, y) * tile_size),
+				map.local_to_map(RoomMap.to_isometric * Vector2(x, y) * RoomMap.tile_size),
 				0,
 				ground
 		)
@@ -86,7 +84,7 @@ func generate():
 	if (duster):
 		remove_child(duster)
 	duster = Duster.instantiate()
-	duster.position = to_isometric * Vector2(rooms.pick_random().get_center()) * tile_size
+	duster.position = RoomMap.to_isometric * Vector2(rooms.pick_random().get_center()) * RoomMap.tile_size
 	duster.map = map
 	add_child(duster)
 
