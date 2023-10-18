@@ -32,10 +32,6 @@ texture = ExtResource("1_ll3yv")
 0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/1/physics_layer_0/angular_velocity = 0.0
 0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)
-2:0/size_in_atlas = Vector2i(1, 2)
-2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
 0:2/size_in_atlas = Vector2i(2, 2)
 0:2/next_alternative_id = 2
 0:2/0 = 0
@@ -65,10 +61,11 @@ texture = ExtResource("1_ll3yv")
 2:2/3/modulate = Color(1, 1, 1, 0.392157)
 2:2/3/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/3/physics_layer_0/angular_velocity = 0.0
-4:0/size_in_atlas = Vector2i(2, 2)
-4:0/0 = 0
-4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 8)
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_h2u6v"]
 tile_shape = 1
