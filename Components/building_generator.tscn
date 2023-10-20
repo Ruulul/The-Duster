@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b13cyhljcqwd5"]
+[gd_scene load_steps=5 format=3 uid="uid://b13cyhljcqwd5"]
 
 [ext_resource type="Script" path="res://Components/building_generator.gd" id="1_5mw7e"]
 [ext_resource type="PackedScene" uid="uid://vrfmovep0eh7" path="res://Components/duster.tscn" id="2_q2qfh"]
 [ext_resource type="PackedScene" uid="uid://idh322qav0lo" path="res://Components/building.tscn" id="3_hr354"]
+[ext_resource type="Script" path="res://Components/New Building Button.gd" id="4_ahj35"]
 
 [node name="BuildingGenerator" type="Node2D"]
 script = ExtResource("1_5mw7e")
@@ -13,3 +14,39 @@ image_height = 20
 
 [node name="Building" parent="." instance=ExtResource("3_hr354")]
 initial_dust_rate = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -42.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Goal: 80%"
+metadata/_edit_use_anchors_ = true
+
+[node name="New Building Button" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("generator")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+disabled = true
+flat = true
+script = ExtResource("4_ahj35")
+generator = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="CanvasLayer/New Building Button"]
+wait_time = 0.2
+autostart = true

@@ -1,6 +1,8 @@
 extends Node2D
 class_name BuildingGenerator
 
+signal generated
+
 @export var rooms_count = 3
 @export var Duster: PackedScene
 @export var image_width = 12
@@ -19,12 +21,6 @@ const max_depth = 10
 @onready var map = $Building/RoomMap as TileMap
 @onready var rooms: Array[Rect2i] = []
 var duster: Node2D
-
-func _input(event):
-	if event.is_action_pressed("refresh"):
-		generate()
-		$Building.refresh()
-
 func _ready():
 	generate()
 
@@ -84,6 +80,8 @@ func generate():
 	duster.position = RoomMap.to_isometric * Vector2(rooms.pick_random().get_center()) * RoomMap.tile_size
 	duster.map = map
 	add_child(duster)
+	$Building.refresh()
+	generated.emit()
 
 func find_coords_for(image: Image, width: int, height: int):
 	var found = false

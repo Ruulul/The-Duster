@@ -39,8 +39,13 @@ func decay():
 func refresh():
 	_decay = 0.0
 	dust_rate = initial_dust_rate
-	for i in range(dirt_multiplier * dust_rate):
-		dirt_loop()
+	var ground = map.get_used_cells(RoomMapLayers.Ground)\
+			.filter(func (point): 
+				return map.get_cell_tile_data(RoomMapLayers.Ground, point)\
+				.get_custom_data('dirtness') > 0
+	)
+	for coord in ground:
+		map.set_cell(RoomMapLayers.Dirt, coord, 0, Dust.dirt, Dust.dirt_levels[-1])
 	decay()
 	dirt_loop()
 	

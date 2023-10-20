@@ -44,7 +44,8 @@ Make friends and enemies.
 - [x] Building generation
 - [x] Make the levels be fast and satisfactory
 - [x] Change Duster logic for cleaning so it is possible resize the action area ✅ 2023-10-18
-- [ ] Insert Dust economy and character's manual stats
+- [x] Insert Dust economy and character's manual stats ✅ 2023-10-20
+- [ ] Fix the cleaning area... its ugly
 - [ ] Find better font
 - [/] Animations
 	- [x] Idle

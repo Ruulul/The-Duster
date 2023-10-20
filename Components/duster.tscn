@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://vrfmovep0eh7"]
+[gd_scene load_steps=14 format=3 uid="uid://vrfmovep0eh7"]
 
 [ext_resource type="Script" path="res://Components/Duster.gd" id="1_6ylfx"]
 [ext_resource type="Texture2D" uid="uid://bnl0i645obv3g" path="res://ASSets/human.png" id="2_w4tfo"]
+[ext_resource type="Script" path="res://Components/Dust Upgrades.gd" id="3_tcrng"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hidwb"]
 size = Vector2(12, 4)
@@ -99,20 +100,25 @@ frame_progress = 0.340266
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Dust Upgrades" type="MenuButton" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -8.0
-offset_bottom = 8.0
-grow_horizontal = 0
+[node name="Dust Upgrades" type="MenuButton" parent="CanvasLayer" node_paths=PackedStringArray("duster")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 123.0
+grow_vertical = 0
 text = "Dust Upgrades"
 flat = false
 item_count = 3
 popup/item_0/text = "Speed"
 popup/item_0/id = 0
+popup/item_0/disabled = true
 popup/item_1/text = "Rate"
 popup/item_1/id = 1
+popup/item_1/disabled = true
 popup/item_2/text = "Ratio"
 popup/item_2/id = 2
+popup/item_2/disabled = true
+script = ExtResource("3_tcrng")
+duster = NodePath("../..")
 metadata/_edit_use_anchors_ = true

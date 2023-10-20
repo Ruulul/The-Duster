@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Duster
 
 @export var map: TileMap
 
@@ -8,6 +9,7 @@ extends CharacterBody2D
 @export var cleaning_speed = 1.0
 
 @onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
+@onready var dust_menu = $"CanvasLayer/Dust Upgrades" as MenuButton
 @onready var targets_list: PackedVector2Array = []
 @onready var cleaning_targets: PackedVector2Array = []
 
@@ -25,7 +27,7 @@ func _draw():
 	for target in targets_list:
 		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.BROWN)
 	for target in cleaning_targets:
-		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.BLUE)
+		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.GREEN)
 
 
 func set_target(target: Vector2) -> void:
@@ -40,7 +42,7 @@ func set_next_target():
 	targets_list.remove_at(closest_index)
 
 func _input(event):
-	if event.is_action_pressed("select") and not $"CanvasLayer/Dust Upgrades".is_hovered():
+	if event.is_action_pressed("select") and not dust_menu.is_hovered():
 		var mouse_position = map.local_to_map(
 			map.to_local(
 				$Camera2D.get_global_mouse_position()
@@ -97,14 +99,10 @@ func move() -> void:
 	move_and_slide()
 	
 func get_target_tiles() -> Array[Vector2i]:
-	var square_side: int = 1 + 2 * cleaning_radius
+	var square_side: int = 2 * cleaning_radius
 	var origin_tile_position: Vector2i = map.local_to_map(map.to_local(global_position))
 	if cleaning_radius == 0:
 		return [origin_tile_position]
-	if origin_tile_position.y % 2 == 1:
-		origin_tile_position += (Vector2i.RIGHT + Vector2i.UP) * cleaning_radius
-	else:
-		origin_tile_position += (Vector2i.RIGHT + Vector2i.UP * 2) * cleaning_radius
 
 	var results: Array[Vector2i] = []
 	for y in range(square_side):
@@ -112,7 +110,7 @@ func get_target_tiles() -> Array[Vector2i]:
 			results.append(
 				origin_tile_position
 				+ map.local_to_map(
-					RoomMap.to_isometric
+					RoomMap.to_isometric.translated(-RoomMap.to_isometric.y)
 					* Vector2(x, y)
 					* RoomMap.tile_size
 				)
