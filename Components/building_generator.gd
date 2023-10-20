@@ -61,7 +61,6 @@ func generate():
 				center_horizontal,
 				Vector2i(sign(horizontal_length), horizontal_length)
 		)
-		print(horizontal_line.end, vertical_line.end)
 		generated_map.fill_rect(vertical_line, Color.WHITE)
 		generated_map.fill_rect(horizontal_line, Color.WHITE)
 
