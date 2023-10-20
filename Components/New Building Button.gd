@@ -14,7 +14,7 @@ func _ready():
 		, 0) / float(Dust.dirt_levels.size())
 		var cleared = 1 - float(dirt) / float(ground)
 
-		text = '%.2f%%' % (cleared * 100)
+		text = 'Cleared area: %.2f%%' % (cleared * 100)
 		if cleared >= goal:
 			disabled = false
 		else:

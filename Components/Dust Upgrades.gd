@@ -7,13 +7,13 @@ var stats = {
 	cleaning_radius = 2,
 }
 var bias = {
-	speed = 10,
-	cleaning_speed = 20,
+	cleaning_speed = 10,
+	speed = 20,
 	cleaning_radius = 40
 }
 var base = {
-	speed = 3,
-	cleaning_speed = 4,
+	cleaning_speed = 3,
+	speed = 4,
 	cleaning_radius = 5
 }
 var labels = {
@@ -31,7 +31,7 @@ func _ready():
 		for stat in stats.keys():
 			var cost = cost(duster[stat], stat)
 			popup.set_item_disabled(stats[stat], dust < cost)
-			popup.set_item_text(stats[stat], '%s: %s' % [labels[stat], cost])
+			popup.set_item_text(stats[stat], '%s: %s dust' % [labels[stat], cost])
 				
 	)
 	popup.id_pressed.connect(func (id):
