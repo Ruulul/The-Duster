@@ -94,10 +94,8 @@ func get_target_tiles():
 	var square_side = 1 + 2 * cleaning_radius
 	var origin_tile_position = map.local_to_map(map.to_local(global_position))
 	if origin_tile_position.y % 2 == 1:
-		print('odd')
 		origin_tile_position += (Vector2i.RIGHT + Vector2i.UP) * cleaning_radius
 	else:
-		print('even')
 		origin_tile_position += (Vector2i.RIGHT + Vector2i.UP * 2) * cleaning_radius
 
 	var results = []
