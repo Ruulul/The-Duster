@@ -28,16 +28,16 @@ Make friends and enemies.
 	- [ ] Type of Building
 	- [ ] Zone
 	- [ ] Payment
-- [ ] Character:
+- [/] Character:
 	- [ ] Energy
 	- [ ] Vaccuum Capacity
-	- [ ] Dust
+	- [x] Dust
 	- [ ] Equipment
 		- [ ] Manual
 		- [ ] Automatic
-- [ ] Animations:
-  - [ ] Wait
-  - [ ] Move
+- [/] Animations:
+  - [x] Wait
+  - [x] Move
   - [ ] Clean
 ## Roadmap
 - [x] Character navigation in building
