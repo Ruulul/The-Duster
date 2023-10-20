@@ -12,7 +12,7 @@ var random_len = 0: get = _get_random_size
 func _get_size():
 	return image_width * image_height
 func _get_random_size():
-	return randi_range(min_length, max_length)
+	return randi_range(min_length/2, max_length/2) * 2 + 1
 
 const max_depth = 10
 
