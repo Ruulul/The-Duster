@@ -40,7 +40,7 @@ func set_next_target():
 	targets_list.remove_at(closest_index)
 
 func _input(event):
-	if event.is_action_pressed("select"):
+	if event.is_action_pressed("select") and not $"CanvasLayer/Dust Upgrades".is_hovered():
 		var mouse_position = map.local_to_map(
 			map.to_local(
 				$Camera2D.get_global_mouse_position()
