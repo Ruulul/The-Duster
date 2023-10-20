@@ -3,11 +3,13 @@ extends CharacterBody2D
 @export var map: TileMap
 
 @export_group("stats")
-@export var cleaning_radius: int = 1
+@export var cleaning_radius: int = 0
 @export var speed = 1.0
+@export var cleaning_speed = 1.0
 
 @onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
 @onready var targets_list: PackedVector2Array = []
+@onready var cleaning_targets: PackedVector2Array = []
 
 var states: Dictionary = {
 	move = move,
@@ -22,6 +24,8 @@ func _draw():
 		draw_circle(to_local(navigation_agent.target_position), 5.0, Color.DARK_BLUE)
 	for target in targets_list:
 		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.BROWN)
+	for target in cleaning_targets:
+		draw_circle(to_local(map.to_global(map.map_to_local(target))), 5.0, Color.BLUE)
 
 
 func set_target(target: Vector2) -> void:
@@ -67,10 +71,12 @@ func wait() -> void:
 
 func clear_dust() -> void:
 	state = states.cleaning_dust
+	cleaning_targets.append_array(get_target_tiles())
 
-	get_tree().create_timer(0.5).timeout.connect(func ():
+	get_tree().create_timer(1 / cleaning_speed).timeout.connect(func ():
 			var collected_dust = 0
-			var target_tiles = get_target_tiles()
+			var target_tiles = Array(cleaning_targets)
+			cleaning_targets.clear()
 
 			for coords in target_tiles:
 				var new_dirt_tile = get_new_dirt_tile(coords)
@@ -90,15 +96,17 @@ func move() -> void:
 	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed * 32.0
 	move_and_slide()
 	
-func get_target_tiles():
-	var square_side = 1 + 2 * cleaning_radius
-	var origin_tile_position = map.local_to_map(map.to_local(global_position))
+func get_target_tiles() -> Array[Vector2i]:
+	var square_side: int = 1 + 2 * cleaning_radius
+	var origin_tile_position: Vector2i = map.local_to_map(map.to_local(global_position))
+	if cleaning_radius == 0:
+		return [origin_tile_position]
 	if origin_tile_position.y % 2 == 1:
 		origin_tile_position += (Vector2i.RIGHT + Vector2i.UP) * cleaning_radius
 	else:
 		origin_tile_position += (Vector2i.RIGHT + Vector2i.UP * 2) * cleaning_radius
 
-	var results = []
+	var results: Array[Vector2i] = []
 	for y in range(square_side):
 		for x in range(square_side):
 			results.append(
@@ -111,7 +119,7 @@ func get_target_tiles():
 			)
 	return results
 
-func get_new_dirt_tile(coords):
+func get_new_dirt_tile(coords) -> int:
 	var current_dirt = map.get_cell_alternative_tile(Building.RoomMapLayers.Dirt, coords)
 	var previous_dirt_index = Dust.dirt_levels.find(current_dirt) - 1
 	var previous_dirt = -1
@@ -119,5 +127,5 @@ func get_new_dirt_tile(coords):
 		previous_dirt = Dust.dirt_levels[previous_dirt_index]
 	return previous_dirt
 
-func is_coord_clear(coords):
+func is_coord_clear(coords) -> bool:
 	return map.get_cell_atlas_coords(Building.RoomMapLayers.Dirt, coords) == Vector2i(-1, -1)
