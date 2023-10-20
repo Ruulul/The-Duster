@@ -8,7 +8,6 @@ class_name BuildingGenerator
 @export var min_length = 2
 @export var max_length = 6
 var random_len = 0: get = _get_random_size
-var size = 0 : get = _get_size
 
 func _get_size():
 	return image_width * image_height
@@ -34,9 +33,7 @@ func generate():
 	map.clear_layer(Building.RoomMapLayers.Ground)
 	map.clear_layer(Building.RoomMapLayers.Dirt)
 	rooms = []
-	var pixels = PackedByteArray()
-	pixels.resize(size)
-	var generated_map = Image.create_from_data(image_width, image_height, false, Image.FORMAT_L8, pixels)
+	var generated_map = Image.create(image_width, image_height, false, Image.FORMAT_L8)
 
 	while rooms.size() < rooms_count:
 		var width = random_len

@@ -96,3 +96,4 @@ position_smoothing_enabled = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_oy1lm")
 animation = &"run"
+frame_progress = 0.340266
