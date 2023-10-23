@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://idh322qav0lo"]
-
-[ext_resource type="Script" path="res://Components/building.gd" id="1_tbtcx"]
-[ext_resource type="PackedScene" uid="uid://dct1ngwo8cj1j" path="res://Components/room_map.tscn" id="2_eeltd"]
-
-[node name="Building" type="Node2D"]
-script = ExtResource("1_tbtcx")
-
-[node name="RoomMap" parent="." instance=ExtResource("2_eeltd")]

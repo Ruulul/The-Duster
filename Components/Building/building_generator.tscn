@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://b13cyhljcqwd5"]
 
-[ext_resource type="Script" path="res://Components/building_generator.gd" id="1_5mw7e"]
-[ext_resource type="PackedScene" uid="uid://vrfmovep0eh7" path="res://Components/duster.tscn" id="2_q2qfh"]
-[ext_resource type="PackedScene" uid="uid://idh322qav0lo" path="res://Components/building.tscn" id="3_hr354"]
-[ext_resource type="Script" path="res://Components/New Building Button.gd" id="4_ahj35"]
-[ext_resource type="Theme" uid="uid://n10r7oyerm6" path="res://Components/theme.tres" id="4_likd3"]
+[ext_resource type="Script" path="res://Components/Building/building_generator.gd" id="1_1kaaf"]
+[ext_resource type="PackedScene" uid="uid://vrfmovep0eh7" path="res://Components/duster.tscn" id="2_8jc4b"]
+[ext_resource type="PackedScene" uid="uid://idh322qav0lo" path="res://Components/Building/building.tscn" id="3_fe3jc"]
+[ext_resource type="Theme" uid="uid://n10r7oyerm6" path="res://Components/theme.tres" id="4_on8lf"]
+[ext_resource type="Script" path="res://Components/Building/New Building Button.gd" id="5_dgmxo"]
 
 [node name="BuildingGenerator" type="Node2D"]
-script = ExtResource("1_5mw7e")
+script = ExtResource("1_1kaaf")
 rooms_count = 6
-Duster = ExtResource("2_q2qfh")
+Duster = ExtResource("2_8jc4b")
 image_width = 20
 image_height = 20
 
-[node name="Building" parent="." instance=ExtResource("3_hr354")]
+[node name="Building" parent="." instance=ExtResource("3_fe3jc")]
 initial_dust_rate = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -29,7 +29,7 @@ offset_top = -42.0
 offset_bottom = -19.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("4_likd3")
+theme = ExtResource("4_on8lf")
 text = "Goal: 80%"
 
 [node name="New Building Button" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("generator")]
@@ -43,9 +43,9 @@ offset_top = -4.0
 offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("4_likd3")
+theme = ExtResource("4_on8lf")
 disabled = true
-script = ExtResource("4_ahj35")
+script = ExtResource("5_dgmxo")
 generator = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="CanvasLayer/New Building Button"]

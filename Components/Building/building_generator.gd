@@ -23,6 +23,7 @@ const max_depth = 10
 var duster: Node2D
 func _ready():
 	generate()
+	generated.connect(func (): Coins.on_new_building(rooms_count))
 
 
 func generate():

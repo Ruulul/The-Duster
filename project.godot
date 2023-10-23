@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="The Duster"
-run/main_scene="res://Components/building_generator.tscn"
+run/main_scene="res://Components/Building/building_generator.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Dust="*res://Components/dust.tscn"
+Dust="*res://Components/Currency/dust.tscn"
+Coins="*res://Components/Currency/coins.tscn"
 
 [display]
 

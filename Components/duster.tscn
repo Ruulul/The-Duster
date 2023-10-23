@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Components/Duster.gd" id="1_6ylfx"]
 [ext_resource type="Texture2D" uid="uid://bnl0i645obv3g" path="res://ASSets/human.png" id="2_w4tfo"]
 [ext_resource type="Theme" uid="uid://n10r7oyerm6" path="res://Components/theme.tres" id="3_rnlk0"]
-[ext_resource type="Script" path="res://Components/Dust Upgrades.gd" id="3_tcrng"]
+[ext_resource type="Script" path="res://Components/Currency/Dust Upgrades.gd" id="4_uh0ou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hidwb"]
 size = Vector2(12, 4)
@@ -122,5 +122,5 @@ popup/item_1/disabled = true
 popup/item_2/text = "Ratio"
 popup/item_2/id = 2
 popup/item_2/disabled = true
-script = ExtResource("3_tcrng")
+script = ExtResource("4_uh0ou")
 duster = NodePath("../..")

@@ -98,24 +98,19 @@ func move() -> void:
 	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed * 32.0
 	move_and_slide()
 	
-func get_target_tiles() -> Array[Vector2i]:
-	var square_side: int = 2 * cleaning_radius
-	var origin_tile_position: Vector2i = map.local_to_map(map.to_local(global_position))
-	if cleaning_radius == 0:
-		return [origin_tile_position]
-
-	var results: Array[Vector2i] = []
+func get_target_tiles() -> Array:
+	var square_side: int = 1 + 2 * cleaning_radius
+	var origin_tile_position = \
+			RoomMap.to_isometric.affine_inverse() \
+			*  (map.to_local(global_position) / RoomMap.tile_size) \
+			+ Vector2(-cleaning_radius, -cleaning_radius)
+	var results: Array[Vector2] = []
 	for y in range(square_side):
 		for x in range(square_side):
-			results.append(
-				origin_tile_position
-				+ map.local_to_map(
-					RoomMap.to_isometric.translated(-RoomMap.to_isometric.y)
-					* Vector2(x, y)
-					* RoomMap.tile_size
-				)
-			)
-	return results
+			results.append(origin_tile_position + Vector2(x, y))
+	return results.map(func (coord):
+		return map.local_to_map(RoomMap.to_isometric * coord * RoomMap.tile_size)
+	)
 
 func get_new_dirt_tile(coords) -> int:
 	var current_dirt = map.get_cell_alternative_tile(Building.RoomMapLayers.Dirt, coords)

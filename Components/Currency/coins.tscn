@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhe3jkjd4t0xr"]
+
+[ext_resource type="Script" path="res://Components/Currency/coins.gd" id="1_r4m4u"]
+[ext_resource type="Theme" uid="uid://n10r7oyerm6" path="res://Components/theme.tres" id="2_wfg3q"]
+
+[node name="Coins" type="Node2D"]
+script = ExtResource("1_r4m4u")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme = ExtResource("2_wfg3q")
+text = "Coins: 0"

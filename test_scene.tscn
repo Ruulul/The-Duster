@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dh13x3os3ekps"]
 
-[ext_resource type="PackedScene" uid="uid://dct1ngwo8cj1j" path="res://Components/room_map.tscn" id="1_0ri66"]
+[ext_resource type="PackedScene" uid="uid://dct1ngwo8cj1j" path="res://Components/Building/room_map.tscn" id="1_0ri66"]
 [ext_resource type="Script" path="res://Components/building.gd" id="3_d38jk"]
 [ext_resource type="PackedScene" uid="uid://vrfmovep0eh7" path="res://Components/duster.tscn" id="3_pli06"]
 

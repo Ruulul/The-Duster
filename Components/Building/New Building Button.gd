@@ -4,7 +4,15 @@ var goal = 0.8
 @onready var timer = $Timer
 
 func _ready():
-	timer.timeout.connect(func ():
+	timer.timeout.connect(loop)
+	pressed.connect(func ():
+		if not disabled:
+			timer.start()
+			loop()
+			Dust.reset()
+			generator.generate()
+	)
+func loop():
 		var ground = generator.map.get_used_cells(Building.RoomMapLayers.Ground).size()
 		var dirt = generator.map.get_used_cells(Building.RoomMapLayers.Dirt)\
 		.reduce(func (acc, coord):
@@ -16,13 +24,9 @@ func _ready():
 
 		text = 'Cleared area: %.2f%%' % (cleared * 100)
 		if cleared >= goal:
-			text = 'Go to the next building!'
+			timer.stop()
+			get_tree().create_timer(3.0).timeout.connect(timer.start)
+			text = 'Next Building!'
 			disabled = false
 		else:
 			disabled = true
-	)
-	pressed.connect(func ():
-		if not disabled:
-			Dust.reset()
-			generator.generate()
-	)

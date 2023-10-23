@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dct1ngwo8cj1j"]
 
-[ext_resource type="Texture2D" uid="uid://dcxk6ebq1q7y3" path="res://ASSets/atlas.png" id="1_ll3yv"]
-[ext_resource type="Script" path="res://Components/room_map.gd" id="2_6v6vx"]
+[ext_resource type="Texture2D" uid="uid://dcxk6ebq1q7y3" path="res://ASSets/atlas.png" id="1_jgst4"]
+[ext_resource type="Script" path="res://Components/Building/room_map.gd" id="2_8uo8h"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yjncc"]
 tile_data = PackedInt32Array(131072, 0, 0, 1, 0, 0, 65536, 0, 0, 131073, 0, 0, 196608, 0, 0, 262145, 0, 0, 65537, 0, 0, 131074, 0, 0, 196609, 0, 0)
@@ -18,7 +18,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hxlku"]
-texture = ExtResource("1_ll3yv")
+texture = ExtResource("1_jgst4")
 0:0/size_in_atlas = Vector2i(2, 2)
 0:0/next_alternative_id = 2
 0:0/0 = 0
@@ -107,4 +107,4 @@ layer_3/y_sort_enabled = true
 layer_3/y_sort_origin = 0
 layer_3/z_index = 2
 layer_3/tile_data = PackedInt32Array()
-script = ExtResource("2_6v6vx")
+script = ExtResource("2_8uo8h")
