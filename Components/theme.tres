@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://n10r7oyerm6"]
 
-[ext_resource type="FontFile" uid="uid://7gg1pqa7dtej" path="res://ASSets/tiny/tiny.ttf" id="1_2ny2t"]
+[ext_resource type="FontFile" uid="uid://blugd0rap575a" path="res://ASSets/pixelfj8pt1/pixelFJ8pt1__.TTF" id="1_1kfks"]
 
 [resource]
-default_font = ExtResource("1_2ny2t")
-default_font_size = 6
+default_font = ExtResource("1_1kfks")
+default_font_size = 8
