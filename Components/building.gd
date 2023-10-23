@@ -7,7 +7,7 @@ enum Type {
 }
 
 ## How many specks of dirt will be generated per second
-@export var initial_dust_rate: int = 5
+@export var initial_dust_rate: int = 2
 ## How long in seconds it takes for the dirt rate decays
 @export var dust_decay: int = 20
 ## By how much does the dirt rate decays (decay/rate dirt/second)

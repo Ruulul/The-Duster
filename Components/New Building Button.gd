@@ -16,6 +16,7 @@ func _ready():
 
 		text = 'Cleared area: %.2f%%' % (cleared * 100)
 		if cleared >= goal:
+			text = 'Go to the next building!'
 			disabled = false
 		else:
 			disabled = true
